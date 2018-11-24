@@ -1,31 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Posts from '../../posts/Posts';
 
 class Navbar extends Component {
   state = {
-    auth: false
-  }
+    auth: false,
+  };
 
-  onLoginClick = (e) => {
+  onLoginClick = e => {
     e.preventDefault();
     this.setState({
-      auth: true
-    })
-  }
+      auth: true,
+    });
+  };
 
-  onLogoutClick = (e) => {
+  onLogoutClick = e => {
     e.preventDefault();
     this.setState({
-      auth: false
-    })
-  }
+      auth: false,
+    });
+  };
 
   render() {
     const { auth } = this.state;
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link to="/posts" className="nav-link">
+            Posts
+          </Link>
+        </li>
         <li className="nav-item">
           <a href="#" className="nav-link" onClick={this.onLogoutClick}>
             Logout
@@ -37,7 +43,7 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a className='nav-link disabled'>Sign Up</a>
+          <a className="nav-link disabled">Sign Up</a>
         </li>
         <li className="nav-item">
           <a href="#" onClick={this.onLoginClick} className="nav-link">
@@ -62,10 +68,9 @@ class Navbar extends Component {
 
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-              </li>
+              <li className="nav-item" />
             </ul>
-            { auth ? authLinks : guestLinks }
+            {auth ? authLinks : guestLinks}
           </div>
         </div>
       </nav>
